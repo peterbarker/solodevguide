@@ -81,6 +81,19 @@ The VCC 5V supply is also used as the backup supply for the Pixhawk. Attempting 
 *VCC Battery* can be used as a high-power supply for accessory hardware. The combined total current for both *VCC Battery* pins is limited to 1.1A (fuse: 1812L110/24DR) and the maximum power 18.5W.
 
 
+### Peripheral Mapping
+
+The accessory port breaks out a subset of the available peripherals of the Pixhawk2 and iMX. Here is the mapping between the different naming schemes of peripherals available on Solo. 
+
+| HAL         | System       | ArduCopter Parameter  | Pixhawk2 | Solo Peripheral |
+|-------------|--------------|-----------------------|----------|-----------------|
+| px4io/sbus? | /dev/ttyS0   |                       |          |                 |
+| uartA       | /dev/ttyACM0 |                       | USB      |                 |
+| uartB       | /dev/ttyS3   | SERIAL3               | GPS      | Internal GPS    |
+| uartC       | /dev/ttyS1   | SERIAL1               | Telem1   |                 |
+| uartD       | /dev/ttyS2   | SERIAL2               | Telem2   | Acc. Port       |
+| uartE       | /dev/ttyS6   | SERIAL4               | Serial4  | Gimbal          |
+| nsh console | /dev/ttyS5   |                       | Serial5  | Acc. Port       |
 
 ### Accessory Breakout Board
 
