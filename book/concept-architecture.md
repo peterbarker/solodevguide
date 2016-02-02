@@ -19,6 +19,35 @@ Data lines shown in solid blue with arrows showing the direction of data flow. P
 <!-- Diagram source is on Lucid here: https://www.lucidchart.com/documents/edit/61d4dfb6-701a-45f1-9525-a75a0d9fc8d5# -->
 
 
+### Peripheral Mapping
+
+
+#### Pixhawk2 connections
+| PH2 Port | Connects to               | Role          | NuttX        | ArduCopter Parameter  |
+|----------|---------------------------|---------------|--------------|-----------------------|
+| USB      | Companion* (/dev/ttyACM0) | HAL/uartA     | /dev/ttyACM0 |                       |
+| GPS      | Solo GPS                  | HAL/uartB     | /dev/ttyS3   | SERIAL3               |
+| Telem1   | Companion (/dev/ttymxc1)  | HAL/uartC     | /dev/ttyS1   | SERIAL1               |
+| Telem2   | Accessory Bay             | HAL/uartD     | /dev/ttyS2   | SERIAL2               |
+| Serial4  | Gimbal                    | HAL/uartE     | /dev/ttyS6   | SERIAL4               |
+| Serial5  | Accessory Bay             | nsh console   | /dev/ttyS5   |                       |
+| SPKT/DSM | Companion (/dev/ttymxc2)  | DSM           |              |                       |
+|          | PX4IO board               | PX4IO Console | /dev/ttyS0   |                       |
+| CAN      | Accessory Bay             |               | ?            |                       |
+| i2c      | Solo Compass              |               |              |                       |
+|   i2c    | LED Controllersx4         |               |              |                       |
+|   i2c    | Battery Controller Board  |               |              |                       |
+
+#### Companion connections
+| Device        | Connects to        | Role                   |
+|---------------|--------------------|------------------------|
+| /dev/ttymxc1  | PixHawk (Telem1)   | Telemetry              |
+| /dev/ttymxc2  | PixHawk (DSM)      | DSM                    |
+| /dev/ttymxc3  | ?                  | getty                  |
+| USB Hub       | PixHawk OR Gimbal  |                        |
+| USB Hub       | Accessory Bay      | Your Application here! |
+
+<aside class="note">* A MUX is present which switches the Companion computer's USB connection between Pixhawk2 and the gimbal bay.  By default, this is connected to the gimbal bay.</aside>
 
 ## Solo hardware/software stack
 
